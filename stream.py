@@ -78,7 +78,7 @@ if page=="Ana Sayfa":
         logo_img = Image.open(logo)
         with cols[idx]:
             # Logoları aynı boyutta göstermek ve hizalamak
-            st.image(logo_img, width=50, use_column_width=False)
+            st.image(logo_img, width=50)
             
             # Yazıyı merkeze hizalayarak gösteriyoruz
             st.markdown(f"""
