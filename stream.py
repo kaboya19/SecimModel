@@ -145,7 +145,7 @@ if page=="Ana Sayfa":
 
         # Yazıları yan yana yazdırmak için markdown kullanma
         st.markdown(" | ".join(party_seats))
-        st.image("parlemento_zpiyip.png")
+        st.image("parlemento.png")
     elif scenario== "İYİ-ZP ittifak yapıyor":
         mv=pd.read_csv("MV_Şub 2025_iyizp.csv",index_col=0)
         mv=mv.sum()
