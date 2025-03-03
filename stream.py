@@ -229,7 +229,7 @@ if page=="Ana Sayfa":
     POINT_SIZE = 100
 
     # Streamlit Başlık
-    
+    import warnings
     warnings.filterwarnings("ignore")
     deputies = main(NUM_ROWS, INITIAL_RADIUS, RADIUS_INCREMENT)
 
