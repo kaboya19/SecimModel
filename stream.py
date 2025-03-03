@@ -52,14 +52,14 @@ page=st.sidebar.radio("Sekmeler",tabs)
 import logging
 import streamlit as st
 
-logger = logging.getLogger('streamlit')
-logger.setLevel(logging.ERROR)
+# Streamlit log seviyelerini ayarlamak için logging modülünü kullanıyoruz
+logging.basicConfig(level=logging.ERROR)
 if page=="Ana Sayfa":
-    st.set_option('logger.level', 'error')
+    import logging
 
-    # Logging ayarlarını da yapalım, böylece Python uyarıları da gizlenmiş olur
+    # Set logging level to suppress warnings
     logging.basicConfig(level=logging.ERROR)
-        
+            
 
     # Sayfanın üst kısmında parti logolarını ve oy oranlarını ekleyelim
     st.header("Parti Oy Oranları")
