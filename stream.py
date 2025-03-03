@@ -55,11 +55,11 @@ import streamlit as st
 # Streamlit log seviyelerini ayarlamak için logging modülünü kullanıyoruz
 logging.basicConfig(level=logging.ERROR)
 if page=="Ana Sayfa":
-    import logging
+    st.set_option('logger.level', 'error')
 
-    # Set logging level to suppress warnings
+    # Logging ayarlarını da yapalım, böylece Python uyarıları da gizlenmiş olur
     logging.basicConfig(level=logging.ERROR)
-            
+        
 
     # Sayfanın üst kısmında parti logolarını ve oy oranlarını ekleyelim
     st.header("Parti Oy Oranları")
