@@ -231,6 +231,8 @@ if page=="Ana Sayfa":
     # Streamlit Başlık
     import warnings
     warnings.filterwarnings("ignore")
+    st.set_option('logger.level', 'error')
+
     deputies = main(NUM_ROWS, INITIAL_RADIUS, RADIUS_INCREMENT)
 
     # Plot the deputies and show the plot in Streamlit
