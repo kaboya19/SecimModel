@@ -55,13 +55,22 @@ import streamlit as st
 # Streamlit log seviyelerini ayarlamak için logging modülünü kullanıyoruz
 logging.basicConfig(level=logging.ERROR)
 if page=="Ana Sayfa":
-    st.set_option('deprecation.showPyplotGlobalUse', False)
+    
     import logging
 
     # Set logging level to suppress warnings
     logging.basicConfig(level=logging.ERROR)
             
+    import sys
+    import streamlit as st
 
+    # Standart hata akışını geçici olarak yok sayalım
+    class NullIO:
+        def write(self, msg):
+            pass
+
+    # Hataları gizlemek için stderr'yi geçici olarak NullIO'ya yönlendiriyoruz
+    sys.stderr = NullIO()
     # Sayfanın üst kısmında parti logolarını ve oy oranlarını ekleyelim
     st.header("Parti Oy Oranları")
 
