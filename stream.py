@@ -234,10 +234,14 @@ if page=="Ana Sayfa":
     deputies = main(NUM_ROWS, INITIAL_RADIUS, RADIUS_INCREMENT)
 
     # Grafik oluşturma
-    fig, ax = plt.subplots()  # Yeni bir figür ve eksenler oluşturuyoruz
+    import matplotlib.pyplot as plt
+    import streamlit as st
 
-    # Deputies'leri ve partileri çiziyoruz
-    plot_deputies(deputies, parties, POINT_SIZE)
+    # Yeni bir figür ve eksen oluşturuyoruz
+    fig, ax = plt.subplots(figsize=(12, 6))  # Boyutları ayarlayabilirsiniz
+
+    # Deputies'leri ve partileri çiziyoruz (plot_deputies fonksiyonu burada ax ile çalışmalı)
+    plot_deputies(deputies, parties, POINT_SIZE, ax=ax)  # ax parametresini geçiriyoruz
 
     # Partilerin sandalye sayılarını yazdırıyoruz
     party_seats = [f"**{party.name}: {party.size}**" for party in parties]
@@ -247,6 +251,7 @@ if page=="Ana Sayfa":
 
     # Matplotlib figürünü Streamlit'e gönderiyoruz
     st.pyplot(fig)
+
 
 
         # Parti isimleri ve sandalye sayıları
