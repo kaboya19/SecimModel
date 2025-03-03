@@ -49,6 +49,11 @@ st.markdown(
     """, 
     unsafe_allow_html=True)
 page=st.sidebar.radio("Sekmeler",tabs)
+import logging
+import streamlit as st
+
+# Streamlit log seviyelerini ayarlamak için logging modülünü kullanıyoruz
+logging.basicConfig(level=logging.ERROR)
 if page=="Ana Sayfa":
     import logging
 
