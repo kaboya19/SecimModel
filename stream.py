@@ -122,6 +122,7 @@ if page=="Ana Sayfa":
     )
 
     if scenario == "İYİ-ZP ittifak yapmıyor":
+        from collections import namedtuple, defaultdict
         mv=pd.read_csv("MV_Şub 2025.csv",index_col=0)
         mv=mv.sum()
         mv=pd.DataFrame(mv)
