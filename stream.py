@@ -52,8 +52,8 @@ page=st.sidebar.radio("Sekmeler",tabs)
 import logging
 import streamlit as st
 
-# Streamlit log seviyelerini ayarlamak için logging modülünü kullanıyoruz
-logging.basicConfig(level=logging.ERROR)
+logger = logging.getLogger('streamlit')
+logger.setLevel(logging.ERROR)
 if page=="Ana Sayfa":
     st.set_option('logger.level', 'error')
 
