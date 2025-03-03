@@ -135,6 +135,7 @@ if page=="Ana Sayfa":
         }
 
         df = pd.DataFrame(data)
+        st.image("parlemento_zpiyip.png")
     elif scenario== "İYİ-ZP ittifak yapıyor":
         mv=pd.read_csv("MV_Şub 2025_iyizp.csv",index_col=0)
         mv=mv.sum()
@@ -249,18 +250,8 @@ if page=="Ana Sayfa":
     import logging
     import streamlit as st
 
-    # Streamlit log seviyelerini ayarlamak için logging modülünü kullanıyoruz
-    logging.basicConfig(level=logging.ERROR)
-
-    deputies = main(NUM_ROWS, INITIAL_RADIUS, RADIUS_INCREMENT)
-
-    # Plot the deputies and show the plot in Streamlit
-    fig = plot_deputies(deputies, parties, POINT_SIZE)
-    party_seats = [f"**{party.name}: {party.size}**" for party in parties]
-
-    # Yazıları yan yana yazdırmak için markdown kullanma
-    st.markdown(" | ".join(party_seats))
-    st.pyplot(fig)
+    
+    st.image("parlemento_zpiyip.png")
 
     # Parti isimleri ve sandalye sayıları
     
