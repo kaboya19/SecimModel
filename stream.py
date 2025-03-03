@@ -231,7 +231,11 @@ if page=="Ana Sayfa":
     # Streamlit Başlık
     import warnings
     warnings.filterwarnings("ignore")
-    st.set_option('logger.level', 'error')
+    import logging
+    import streamlit as st
+
+    # Streamlit log seviyelerini ayarlamak için logging modülünü kullanıyoruz
+    logging.basicConfig(level=logging.ERROR)
 
     deputies = main(NUM_ROWS, INITIAL_RADIUS, RADIUS_INCREMENT)
 
