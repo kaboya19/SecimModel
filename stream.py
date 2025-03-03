@@ -324,7 +324,7 @@ if page=="Partilerin MV Sayısı Trendi":
     )
     if scenario=="İYİ-ZP ittifak yapıyor":
         dağılımiyizp=pd.read_csv("dağılımiyizp.csv")
-        dağılımiyizp.index=pd.date_range(start="2024-01-31",freq="M",periods=len(dağılım))
+        dağılımiyizp.index=pd.date_range(start="2024-01-31",freq="M",periods=len(dağılımiyizp))
 
         if şehir=="TÜRKİYE GENELİ":
             fig= go.Figure()
