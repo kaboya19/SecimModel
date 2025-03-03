@@ -135,7 +135,8 @@ if page=="Ana Sayfa":
         }
 
         df = pd.DataFrame(data)
-        st.image("parlemento_zpiyip.png")
+        
+        st.image("parlemento.png", use_column_width=True)
     elif scenario== "İYİ-ZP ittifak yapıyor":
         mv=pd.read_csv("MV_Şub 2025_iyizp.csv",index_col=0)
         mv=mv.sum()
