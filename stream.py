@@ -230,32 +230,19 @@ if page=="Ana Sayfa":
 
     # Streamlit Başlık
     
-
+    warnings.filterwarnings("ignore")
     deputies = main(NUM_ROWS, INITIAL_RADIUS, RADIUS_INCREMENT)
 
-    # Grafik oluşturma
-    import matplotlib.pyplot as plt
-    import streamlit as st
-
-    # Yeni bir figür ve eksen oluşturuyoruz
-    fig, ax = plt.subplots(figsize=(12, 6))  # Boyutları ayarlayabilirsiniz
-
-    # Deputies'leri ve partileri çiziyoruz (plot_deputies fonksiyonu burada ax ile çalışmalı)
-    plot_deputies(deputies, parties, POINT_SIZE, ax=ax)  # ax parametresini geçiriyoruz
-
-    # Partilerin sandalye sayılarını yazdırıyoruz
+    # Plot the deputies and show the plot in Streamlit
+    fig = plot_deputies(deputies, parties, POINT_SIZE)
     party_seats = [f"**{party.name}: {party.size}**" for party in parties]
 
     # Yazıları yan yana yazdırmak için markdown kullanma
     st.markdown(" | ".join(party_seats))
-
-    # Matplotlib figürünü Streamlit'e gönderiyoruz
     st.pyplot(fig)
 
-
-
-        # Parti isimleri ve sandalye sayıları
-        
+    # Parti isimleri ve sandalye sayıları
+    
 
 
     
