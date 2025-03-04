@@ -93,20 +93,34 @@ if page=="Ana Sayfa":
     for idx, (party, logo) in enumerate(party_logos.items()):
         logo_img = Image.open(logo)
         with cols[idx]:
-            # Flexbox ile hizalama
+            # Logoları aynı boyutta göstermek
+            st.image(logo_img, width=50)
+            
+            # Oy oranını yazıyoruz
             st.markdown(f"""
-            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                <div style="display: flex; justify-content: center;">
-                    <img src="data:image/png;base64,{base64.b64encode(logo_img.tobytes()).decode()}" width="50">
-                </div>
-                <p style="font-size: 16px; margin-top: 10px;">
+                <h5 style="text-align: center; font-size: 16px; margin-top: 10px;">
                     {party}: {türkiyeoranlar[party].iloc[-1]:.2f}%
-                </p>
-                <p style="font-size: 14px; color: {'green' if fark[party].iloc[-1] > 0 else 'red'};">
-                     {fark[party].iloc[-1]:.2f}
-                </p>
-            </div>
+                </h5>
             """, unsafe_allow_html=True)
+
+            # Fark değerini yazıyoruz
+            fark_value = fark[party].iloc[-1]
+            fark_color = 'green' if fark_value > 0 else 'red'  # Fark pozitifse yeşil, negatifse kırmızı
+            if fark_value>0:
+                st.markdown(f"""
+                    <h6 style="text-align: center; font-size: 14px; color: {fark_color};">
+                        (+{fark_value:.2f})
+                    </h6>
+                """, unsafe_allow_html=True)
+            elif fark_value<=0:
+                
+                st.markdown(f"""
+                    <h6 style="text-align: center; font-size: 14px; color: {fark_color};">
+                        (-{fark_value:.2f})
+                    </h6>
+                """, unsafe_allow_html=True)
+
+
     
     import numpy as np
     import matplotlib.pyplot as plt
