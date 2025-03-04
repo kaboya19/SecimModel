@@ -86,20 +86,31 @@ if page=="Ana Sayfa":
         'İYİ':'iyi_logo.png'
     }
     türkiyeoranlar=pd.read_csv("türkiyeoranlar.csv",index_col=0)
+    fark=türkiyeoranlar.diff()
 
     cols = st.columns(8)  # 5 sütunlu bir yapı oluşturuyoruz
 
     for idx, (party, logo) in enumerate(party_logos.items()):
         logo_img = Image.open(logo)
         with cols[idx]:
-            # Logoları aynı boyutta göstermek ve hizalamak
+            # Logoları aynı boyutta göstermek
             st.image(logo_img, width=50)
             
-            # Yazıyı merkeze hizalayarak gösteriyoruz
+            # Oy oranını yazıyoruz
             st.markdown(f"""
                 <h5 style="text-align: center; font-size: 16px; margin-top: 10px;">
                     {party}: {türkiyeoranlar[party].iloc[-1]:.2f}%
                 </h5>
+            """, unsafe_allow_html=True)
+
+            # Fark değerini yazıyoruz
+            fark_value = fark[party].iloc[-1]
+            fark_color = 'green' if fark_value > 0 else 'red'  # Fark pozitifse yeşil, negatifse kırmızı
+            
+            st.markdown(f"""
+                <h6 style="text-align: center; font-size: 14px; color: {fark_color};">
+                    ({fark_value:.2f})
+                </h6>
             """, unsafe_allow_html=True)
 
     
