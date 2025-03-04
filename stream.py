@@ -994,7 +994,7 @@ if page=="Türkiye Haritası":
                             'İYİ':True
                         },
                         color_discrete_map=party_colors,
-                        title="Türkiye Seçim Haritası (Parti Renkleriyle)")
+                        title="Türkiye Seçim Haritası")
 
     # Harita'nın doğru görünebilmesi için geojson özelliğini ayarlıyoruz
     fig.update_geos(fitbounds="locations", visible=False)
