@@ -96,16 +96,17 @@ if page=="Ana Sayfa":
             # Flexbox ile hizalama
             st.markdown(f"""
             <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                <img src="{logo_img}" width="50">
+                <div style="display: flex; justify-content: center;">
+                    <img src="data:image/png;base64,{base64.b64encode(logo_img.tobytes()).decode()}" width="50">
+                </div>
                 <p style="font-size: 16px; margin-top: 10px;">
                     {party}: {türkiyeoranlar[party].iloc[-1]:.2f}%
                 </p>
                 <p style="font-size: 14px; color: {'green' if fark[party].iloc[-1] > 0 else 'red'};">
-                    Fark: {fark[party].iloc[-1]:.2f}
+                     {fark[party].iloc[-1]:.2f}
                 </p>
             </div>
             """, unsafe_allow_html=True)
-
     
     import numpy as np
     import matplotlib.pyplot as plt
