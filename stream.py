@@ -924,6 +924,16 @@ if page=="Partilerin Oy Trendi":
                     hovertemplate='Zafer Partisi<br>%{x|%Y-%m}<br>%{y:.2f}<extra></extra>'
                 ))
         
+        fig.add_trace(go.Scatter(
+                    x=şehirdata.index,
+                    y=şehirdata["YRP"].values,
+                    mode='lines+markers',
+                    name="YRP",
+                    line=dict(color='#0f9b4a', width=4),
+                    marker=dict(size=8, color="black"),
+                    hovertemplate='Zafer Partisi<br>%{x|%Y-%m}<br>%{y:.2f}<extra></extra>'
+                ))
+        
         
         fig.update_layout(
                 xaxis=dict(
