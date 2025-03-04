@@ -931,7 +931,7 @@ if page=="Partilerin Oy Trendi":
                     name="YRP",
                     line=dict(color='#0f9b4a', width=4),
                     marker=dict(size=8, color="black"),
-                    hovertemplate='Yeniden Refah Partisi<br>%{x|%Y-%m}<br>%{y:.2f}<extra></extra>'
+                    hovertemplate='Zafer Partisi<br>%{x|%Y-%m}<br>%{y:.2f}<extra></extra>'
                 ))
         
         
