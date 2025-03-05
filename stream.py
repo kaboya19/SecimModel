@@ -67,7 +67,7 @@ if page=="Cumhurbaşkanlığı Seçimi":
     data = {
         'A Partisi': [0, 0, 0],
         'B Partisi': [0, 0, 0],
-        'C Partisi': [0, 0, 0]
+        'C Partisi': [0, 0,  0]
     }
 
     # DataFrame oluştur
