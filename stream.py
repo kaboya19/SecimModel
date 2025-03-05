@@ -9,7 +9,7 @@ import plotly.io as pio
 tabs=["Ana Sayfa","Türkiye Haritası"]
 tabs = option_menu(
     menu_title=None,
-    options=["Ana Sayfa","Türkiye Haritası","Partilerin Oy Trendi","Partilerin MV Sayısı Trendi"],
+    options=["Ana Sayfa","Türkiye Haritası","Partilerin Oy Trendi","Partilerin MV Sayısı Trendi","Cumhurbaşkanlığı Seçimi"],
     menu_icon="cast",
     default_index=0,
     orientation="horizontal",
@@ -51,6 +51,54 @@ st.markdown(
 page=st.sidebar.radio("Sekmeler",tabs)
 import logging
 import streamlit as st
+
+if page=="Cumhurbaşkanlığı Seçimi":
+    import streamlit as st
+    import pandas as pd
+
+    # Başlık
+    st.title("Cumhurbaşkanı Adayları ve Parti Destek Oranı Simülasyonu")
+
+    # Parti ve Aday Listesi
+    parties = ['A Partisi', 'B Partisi', 'C Partisi']
+    candidates = ['X Adayı', 'Y Adayı', 'Z Adayı']
+
+    # Form oluşturulması
+    st.header("Destek Oranlarını Girin")
+    form = st.form(key="simulation_form")
+
+    # Kullanıcıdan alınacak veriler
+    support_data = {}
+
+    # Partilerin her bir adayı için destek oranlarını almak
+    for party in parties:
+        st.subheader(f"{party} için destek oranları:")
+        party_data = {}
+        
+        for candidate in candidates:
+            support = form.number_input(f"{candidate} Destek Oranı (%)", min_value=0, max_value=100, step=1)
+            party_data[candidate] = support
+        
+        support_data[party] = party_data
+
+    # Formu gönderme butonu
+    submit_button = form.form_submit_button(label="Verileri Gönder")
+
+    # Verileri işleme
+    if submit_button:
+        # Toplam kontrolü (her parti için toplam 100 olmalı)
+        for party, party_data in support_data.items():
+            total_support = sum(party_data.values())
+            if total_support != 100:
+                st.warning(f"{party} için girilen destek oranları toplamı {total_support}%. Lütfen oranları düzelterek toplamın 100 olmasını sağlayın.")
+        else:
+            st.success(f"{party} için oranlar doğru şekilde girildi!")
+    
+    # Kullanıcıdan alınan verileri dataframe olarak gösterme
+    result_df = pd.DataFrame(support_data)
+    st.write("Girilen Destek Oranları Tablosu:")
+    st.dataframe(result_df)
+
 
 # Streamlit log seviyelerini ayarlamak için logging modülünü kullanıyoruz
 logging.basicConfig(level=logging.ERROR)
