@@ -76,7 +76,8 @@ if page=="Cumhurbaşkanlığı Seçimi":
         party_data = {}
         
         for candidate in candidates:
-            support = form.number_input(f"{candidate} Destek Oranı (%)", min_value=0, max_value=100, step=1)
+            # Benzersiz key kullanmak için party ve candidate ismini birleştiriyoruz
+            support = form.number_input(f"{candidate} Destek Oranı (%)", min_value=0, max_value=100, step=1, key=f"{party}_{candidate}")
             party_data[candidate] = support
         
         support_data[party] = party_data
