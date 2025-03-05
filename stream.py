@@ -63,42 +63,31 @@ if page=="Cumhurbaşkanlığı Seçimi":
     parties = ['A Partisi', 'B Partisi', 'C Partisi']
     candidates = ['X Adayı', 'Y Adayı', 'Z Adayı']
 
-    # Form oluşturulması
+    # Destek oranları için başlangıç verisi
+    initial_data = {party: {candidate: 0 for candidate in candidates} for party in parties}
+
+    # Tablonun oluşturulması
     st.header("Destek Oranlarını Girin")
-    form = st.form(key="simulation_form")
+    df = pd.DataFrame(initial_data)
 
-    # Kullanıcıdan alınacak veriler
-    support_data = {}
-
-    # Partilerin her bir adayı için destek oranlarını almak
+    # Kullanıcıdan destek oranlarını almak
     for party in parties:
-        st.subheader(f"{party} için destek oranları:")
-        party_data = {}
-        
         for candidate in candidates:
-            # Benzersiz key kullanmak için party ve candidate ismini birleştiriyoruz
-            support = form.number_input(f"{candidate} Destek Oranı (%)", min_value=0, max_value=100, step=1, key=f"{party}_{candidate}")
-            party_data[candidate] = support
-        
-        support_data[party] = party_data
+            df.at[candidate, party] = st.number_input(f"{party} - {candidate} Destek Oranı (%)", min_value=0, max_value=100, step=1, key=f"{party}_{candidate}")
 
-    # Formu gönderme butonu
-    submit_button = form.form_submit_button(label="Verileri Gönder")
-
-    # Verileri işleme
-    if submit_button:
-        # Toplam kontrolü (her parti için toplam 100 olmalı)
-        for party, party_data in support_data.items():
-            total_support = sum(party_data.values())
+    # Verileri işleme ve gösterme
+    if st.button("Verileri Gönder"):
+        # Destek oranlarının toplamı %100 olmalı
+        for party in parties:
+            total_support = df[party].sum()
             if total_support != 100:
                 st.warning(f"{party} için girilen destek oranları toplamı {total_support}%. Lütfen oranları düzelterek toplamın 100 olmasını sağlayın.")
             else:
                 st.success(f"{party} için oranlar doğru şekilde girildi!")
-        
+
         # Kullanıcıdan alınan verileri dataframe olarak gösterme
-        result_df = pd.DataFrame(support_data)
         st.write("Girilen Destek Oranları Tablosu:")
-        st.dataframe(result_df)
+        st.dataframe(df)
 
 
 
