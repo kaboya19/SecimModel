@@ -63,17 +63,21 @@ if page=="Cumhurbaşkanlığı Seçimi":
     parties = ['A Partisi', 'B Partisi', 'C Partisi']
     candidates = ['X Adayı', 'Y Adayı', 'Z Adayı']
 
-    # Destek oranları için başlangıç verisi
-    initial_data = {candidate: {party: 0 for party in parties} for candidate in candidates}
+    # Başlangıçta DataFrame oluşturma
+    data = {
+        'A Partisi': [0, 0, 0],
+        'B Partisi': [0, 0, 0],
+        'C Partisi': [0, 0, 0]
+    }
 
-    # DataFrame oluşturma
-    df = pd.DataFrame(initial_data)
+    # DataFrame oluştur
+    df = pd.DataFrame(data, index=candidates)
 
     # Tabloyu gösterme ve veri girişi
     st.header("Destek Oranlarını Girin")
 
     # Kullanıcıdan destek oranlarını almak
-    for candidate in candidates:
+    for i, candidate in enumerate(candidates):
         for party in parties:
             df.at[candidate, party] = st.number_input(f"{party} - {candidate} Destek Oranı (%)", min_value=0, max_value=100, step=1, key=f"{party}_{candidate}")
 
@@ -90,6 +94,7 @@ if page=="Cumhurbaşkanlığı Seçimi":
         # Kullanıcıdan alınan verileri dataframe olarak gösterme
         st.write("Girilen Destek Oranları Tablosu:")
         st.dataframe(df)
+
 
 
 
