@@ -91,13 +91,14 @@ if page=="Cumhurbaşkanlığı Seçimi":
             total_support = sum(party_data.values())
             if total_support != 100:
                 st.warning(f"{party} için girilen destek oranları toplamı {total_support}%. Lütfen oranları düzelterek toplamın 100 olmasını sağlayın.")
-        else:
-            st.success(f"{party} için oranlar doğru şekilde girildi!")
-    
-    # Kullanıcıdan alınan verileri dataframe olarak gösterme
-    result_df = pd.DataFrame(support_data)
-    st.write("Girilen Destek Oranları Tablosu:")
-    st.dataframe(result_df)
+            else:
+                st.success(f"{party} için oranlar doğru şekilde girildi!")
+        
+        # Kullanıcıdan alınan verileri dataframe olarak gösterme
+        result_df = pd.DataFrame(support_data)
+        st.write("Girilen Destek Oranları Tablosu:")
+        st.dataframe(result_df)
+
 
 
 # Streamlit log seviyelerini ayarlamak için logging modülünü kullanıyoruz
